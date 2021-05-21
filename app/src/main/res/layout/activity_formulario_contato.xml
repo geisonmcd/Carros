@@ -26,18 +26,34 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activity_formulario_contato_layout_fone"
+        android:id="@+id/activity_formulario_contato_layout_fone_residencial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/activity_formulario_contato_layout_nome">
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/activity_formulario_contato_fone"
+        android:id="@+id/activity_formulario_contato_fone_residencial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/white"
         android:inputType="phone"
-        android:hint="Informe o Telefone"
+        android:hint="Informe o seu Fone Residencial"
+        tools:layout_editor_absoluteX="0dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/activity_formulario_contato_layout_celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_contato_layout_fone_residencial">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/activity_formulario_contato_celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:inputType="phone"
+        android:hint="Informe o seu Celular"
         tools:layout_editor_absoluteX="0dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +61,7 @@
         android:id="@+id/activity_formulario_contato_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_contato_layout_fone">
+        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_contato_layout_celular">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/activity_formulario_contato_email"
         android:layout_width="match_parent"
@@ -57,13 +73,5 @@
         tools:layout_editor_absoluteX="7dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--
-       Botão removido em função que existe um menu que salva
-       <Button
-            android:id="@+id/activity_formulario_contato_botao_salvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/activity_formulario_contato_email"
-            android:text="Salvar"
-            android:layout_margin="15dp" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

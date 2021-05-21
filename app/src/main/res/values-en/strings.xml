@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Projeto Lista Contatos</string>
     <string name="va_string_nome">Contact Name</string>
+    <string name="MENSAGEM_EMAIL_INVALIDO">E-mail not valid</string>
 </resources>

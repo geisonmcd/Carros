@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import br.unisul.listacontatos.R
+import br.unisul.listacontatos.dao.AppDatabase
 import br.unisul.listacontatos.model.Contato
 
 
@@ -38,7 +39,9 @@ class ListaContatosAdapter(private val context: Context): BaseAdapter() {
         val nome: TextView = viewCriada.findViewById(R.id.item_contato_nome)
         nome.text = contatoIncluido.nome
         val telefone: TextView = viewCriada.findViewById(R.id.item_contato_telefone)
-        telefone.text = contatoIncluido.telefone
+        val telefoneDAO = AppDatabase.getInstance(context).telefoneDAO()
+        val primeiroFone = telefoneDAO.buscaPrimeiroTelefoneDoContato(contatoIncluido.id)
+        telefone.text = primeiroFone.numero
     }
 
 

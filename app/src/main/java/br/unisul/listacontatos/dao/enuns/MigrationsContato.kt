@@ -15,7 +15,7 @@ enum class MigrationsContato {
                     execSQL("INSERT INTO telefones_tb (numero_telefones, tipo_telefones, contato_id) SELECT telefone_contatos, ?, id FROM contatos_tb",
                     arrayOf(TipoFone.RESIDENCIAL))
                     execSQL("DROP TABLE contatos_tb")
-                    execSQL("ALTER TABLE contatos_tb_bkp RENAME to contatos_tb_novo")
+                    execSQL("ALTER TABLE contatos_tb_bkp RENAME to contatos_tb")
                 }
             }
 

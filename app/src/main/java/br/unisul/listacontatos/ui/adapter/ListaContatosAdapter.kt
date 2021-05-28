@@ -9,9 +9,10 @@ import android.widget.TextView
 import br.unisul.listacontatos.R
 import br.unisul.listacontatos.dao.AppDatabase
 import br.unisul.listacontatos.model.Contato
+import br.unisul.listacontatos.model.Telefone
 
 
-class ListaContatosAdapter(private val context: Context): BaseAdapter() {
+class ListaContatosAdapter(private val context: Context) : BaseAdapter() {
     private val contatoLista: MutableList<Contato> = ArrayList()
 
 
@@ -28,24 +29,27 @@ class ListaContatosAdapter(private val context: Context): BaseAdapter() {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val viewCriada: View = LayoutInflater.from(context).inflate(R.layout.item_contato, parent, false)
+        val viewCriada: View =
+            LayoutInflater.from(context).inflate(R.layout.item_contato, parent, false)
         val contatoIncluido = contatoLista.get(position)
         atualizarDadosTextView(viewCriada, contatoIncluido)
         return viewCriada
 
     }
 
-    private fun atualizarDadosTextView(viewCriada: View,contatoIncluido: Contato) {
+    private fun atualizarDadosTextView(viewCriada: View, contatoIncluido: Contato) {
         val nome: TextView = viewCriada.findViewById(R.id.item_contato_nome)
         nome.text = contatoIncluido.nome
         val telefone: TextView = viewCriada.findViewById(R.id.item_contato_telefone)
         val telefoneDAO = AppDatabase.getInstance(context).telefoneDAO()
-        val primeiroFone = telefoneDAO.buscaPrimeiroTelefoneDoContato(contatoIncluido.id)
-        telefone.text = primeiroFone.numero
+        val primeiroFone: Telefone? = telefoneDAO.buscaPrimeiroTelefoneDoContato(contatoIncluido.id)
+        if (primeiroFone != null) {
+            telefone.text = primeiroFone.numero
+        }
     }
 
 
-    fun atualizarDados(contatos: List<Contato>){
+    fun atualizarDados(contatos: List<Contato>) {
         this.contatoLista.clear()
         this.contatoLista.addAll(contatos)
         notifyDataSetChanged()

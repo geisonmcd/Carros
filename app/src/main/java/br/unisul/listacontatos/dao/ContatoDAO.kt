@@ -6,7 +6,7 @@ import br.unisul.listacontatos.model.Contato
 @Dao
 interface ContatoDAO {
     @Insert
-    fun salva(contato: Contato)
+    fun salva(contato: Contato): Long
 
     @Query("SELECT * FROM contatos_tb")
     fun todos(): List<Contato>

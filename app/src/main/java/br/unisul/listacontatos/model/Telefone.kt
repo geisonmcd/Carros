@@ -16,6 +16,16 @@ import br.unisul.listacontatos.model.enuns.TipoFone
         onDelete = ForeignKey.CASCADE)])
 class Telefone {
 
+    constructor(numeroFone: String, tipo: TipoFone, idContato: Long) : this() {
+
+        this.numero = numeroFone
+        this.tipo = tipo
+        this.contatoId = idContato
+    }
+    constructor(){
+
+    }
+
     @PrimaryKey(autoGenerate = true)
     var id:Long = 0
 

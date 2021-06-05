@@ -1,4 +1,4 @@
-package br.unisul.listacontatos
+package br.unisul.carros
 
 import org.junit.Test
 

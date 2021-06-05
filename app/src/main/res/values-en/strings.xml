@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Projeto Lista Contatos</string>
+    <string name="app_name">Projeto Final Geison</string>
     <string name="va_string_nome">Contact Name</string>
     <string name="MENSAGEM_EMAIL_INVALIDO">E-mail not valid</string>
 </resources>

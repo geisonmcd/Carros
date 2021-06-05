@@ -25,6 +25,7 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
     private lateinit var marcaModelo: TextInputLayout
     private lateinit var proprietario: TextInputLayout
     private lateinit var placa: TextInputLayout
+    private lateinit var renavam: TextInputLayout
     private lateinit var campoTelefoneResidencial: TextInputLayout
     private lateinit var campoTelefoneCelular: TextInputLayout
     private lateinit var campoEmail: TextInputLayout
@@ -60,6 +61,7 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         configurarCampoMarcaModelo()
         configurarCampoProprietario()
         configurarCampoPlaca()
+        configurarCampoRenavam()
         configurarCampoTelefoneResidencial()
         configurarCampoTelefoneCelular()
         configurarCampoEmail()
@@ -71,7 +73,7 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         editText?.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if (!hasFocus) {
-                    if (validador.invalido()) return
+                    if (validador.estaInvalido()) return
                 } else {
                     validador.removerFormatacao()
                 }
@@ -98,6 +100,13 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         val validador = ValidadorPlaca(placa)
         validadoresLista.add(validador)
         validarExibicaoObrigatorio(placa, validador)
+    }
+
+    private fun configurarCampoRenavam() {
+        renavam = findViewById(R.id.activity_formulario_carro_layout_renavam)
+        val validador = ValidadorRenavam(renavam)
+        validadoresLista.add(validador)
+        validarExibicaoObrigatorio(renavam, validador)
     }
 
     private fun configurarCampoTelefoneResidencial() {
@@ -136,7 +145,7 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         val contatoEdita = dados.getSerializableExtra(CHAVE_EXTRA_CONTATO) as Carro
         preencheCamposTela(contatoEdita)
         this.carro.id = contatoEdita.id
-        this.carro.setCampos(contatoEdita.nome, contatoEdita.email, contatoEdita.proprietario, contatoEdita.placa)
+        this.carro.setCampos(contatoEdita.nome, contatoEdita.email, contatoEdita.proprietario, contatoEdita.placa, contatoEdita.renavam)
         telefonesContato = telefoneDAO.buscaTodosTelefones(this.carro.id)
         for (telefone in telefonesContato) {
             if (telefone.tipo == TipoFone.RESIDENCIAL) {
@@ -152,15 +161,19 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         campoEmail.editText?.setText(carroTela.email)
         proprietario.editText?.setText(carroTela.proprietario)
         placa.editText?.setText(carroTela.placa)
+        renavam.editText?.setText(carroTela.renavam)
     }
 
     private fun finalizarFormulario() {
         var validaFormulario = true
         for (validador in validadoresLista) {
-            if (validador.invalido()) {
+            println("rapaaaz")
+            println(validador.estaInvalido())
+            if (validador.estaInvalido()) {
                 validaFormulario = false
             }
         }
+        println(validaFormulario)
         if (validaFormulario) {
             preencheContato()
             if (carro.temIdValido()) {
@@ -204,7 +217,8 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
             marcaModelo.editText?.text.toString(),
             campoEmail.editText?.text.toString(),
             proprietario.editText?.text.toString(),
-            placa.editText?.text.toString()
+            placa.editText?.text.toString(),
+            renavam.editText?.text.toString(),
         )
     }
 

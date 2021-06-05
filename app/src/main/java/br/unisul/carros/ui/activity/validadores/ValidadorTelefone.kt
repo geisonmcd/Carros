@@ -1,14 +1,13 @@
 package br.unisul.carros.ui.activity.validadores
 
-import android.util.Log
 import com.google.android.material.textfield.TextInputLayout
 
 class ValidadorTelefone(private val textInputLayout: TextInputLayout) : Validador {
     private val editText = textInputLayout.editText
 
-    override fun invalido(): Boolean {
+    override fun estaInvalido(): Boolean {
         val validadorObrigatorio = ValidadorObrigatorio(textInputLayout)
-        if (validadorObrigatorio.invalido()) return true
+        if (validadorObrigatorio.estaInvalido()) return true
         removerFormatacao()
         formatarTelefone()
         return false

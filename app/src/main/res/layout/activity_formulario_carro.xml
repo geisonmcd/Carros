@@ -58,7 +58,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activity_formulario_contato_layout_renavam"
+        android:id="@+id/activity_formulario_carro_layout_renavam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_placa">
@@ -70,7 +70,7 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:hint="Informe o renavam"
-            android:inputType="phone"
+            android:inputType="textCapWords"
             tools:layout_editor_absoluteX="0dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +78,7 @@
         android:id="@+id/activity_formulario_contato_layout_fone_residencial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_contato_layout_renavam">
+        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_renavam">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_formulario_contato_fone_residencial"

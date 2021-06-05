@@ -3,7 +3,8 @@ package br.unisul.carros.ui.activity.validadores
 import com.google.android.material.textfield.TextInputLayout
 
 class ValidadorObrigatorio(val textInputLayout: TextInputLayout): Validador {
-    override fun invalido(): Boolean {
+
+    override fun estaInvalido(): Boolean {
         val editText = textInputLayout.editText
         if (editText?.text.toString().isEmpty()) {
             textInputLayout.error = "Campo Obrigatório"
@@ -13,7 +14,6 @@ class ValidadorObrigatorio(val textInputLayout: TextInputLayout): Validador {
             textInputLayout.error = null
             textInputLayout.isErrorEnabled = false
         }
-
         return false
     }
 

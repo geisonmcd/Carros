@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
 
     private val dao: CarroDAO by lazy {
-        AppDatabase.getInstance(this).contadoDAO()
+        AppDatabase.getInstance(this).carroDAO()
     }
     private val listaContatoView: ListView by lazy { findViewById(R.id.activity_lista_contatos) }
     private val adapter: ListaCarrosAdapter by lazy {
@@ -26,7 +26,7 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista_contatos)
+        setContentView(R.layout.activity_lista_carros)
         title = TITULO_CARROS
         configurarFabNovoContato()
         configuraLista()
@@ -90,9 +90,6 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
             startActivity(Intent(this@ListaCarrosActivity, FormularioContatoActivity::class.java))
         }
     }
-
-
-
 
     private fun configurarAdapter() {
         listaContatoView.adapter = adapter

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Projeto Final Geison</string>
-    <string name="va_string_nome">Contact Name</string>
+    <string name="va_string_marca_modelo">Contact Name</string>
+    <string name="va_string_proprietario">Proprietario</string>
     <string name="MENSAGEM_EMAIL_INVALIDO">E-mail not valid</string>
 </resources>

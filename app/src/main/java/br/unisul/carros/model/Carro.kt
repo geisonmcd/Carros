@@ -14,12 +14,20 @@ class Carro() : Serializable {
     @ColumnInfo(name = "nome_contatos")
     var nome: String = ""
 
+    @ColumnInfo(name = "proprietario")
+    var proprietario: String = ""
+
+    @ColumnInfo(name = "placa")
+    var placa: String = ""
+
     @ColumnInfo(name = "email_contatos")
     lateinit var email: String
 
-    constructor(nome: String,  email: String) : this() {
+    constructor(nome: String,  email: String, proprietario: String, placa: String) : this() {
         this.nome = nome
         this.email = email
+        this.proprietario = proprietario
+        this.placa = placa
     }
 
     fun temIdValido(): Boolean {
@@ -30,10 +38,11 @@ class Carro() : Serializable {
         return nome
     }
 
-    fun setCampos(nome: String, email: String) {
+    fun setCampos(nome: String, email: String, proprietario: String, placa: String) {
         this.nome = nome
         this.email = email
+        this.proprietario = proprietario
+        this.placa = placa
     }
-
 
 }

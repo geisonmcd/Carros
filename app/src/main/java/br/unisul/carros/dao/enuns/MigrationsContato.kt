@@ -9,9 +9,9 @@ enum class MigrationsContato {
         override fun build()= object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 with(database){
-                    execSQL("CREATE TABLE IF NOT EXISTS `contatos_tb_bkp` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome_contatos` TEXT NOT NULL, `email_contatos` TEXT NOT NULL)")
+                    execSQL("CREATE TABLE IF NOT EXISTS `contatos_tb_bkp` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome_contatos` TEXT NOT NULL, `email_contatos` TEXT NOT NULL, `proprietario` TEXT NOT NULL, `placa` TEXT NOT NULL)")
                     execSQL("CREATE TABLE IF NOT EXISTS `telefones_tb` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `numero_telefones` TEXT NOT NULL, `tipo_telefones` TEXT NOT NULL, `contato_id` INTEGER NOT NULL, FOREIGN KEY(`contato_id`) REFERENCES `contatos_tb`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )")
-                    execSQL("INSERT INTO contatos_tb_bkp (id, nome_contatos, email_contatos) SELECT id, nome_contatos, email_contatos FROM contatos_tb")
+                    execSQL("INSERT INTO contatos_tb_bkp (id, nome_contatos, email_contatos, proprietario, placa) SELECT id, nome_contatos, email_contatos, proprietario, placa FROM contatos_tb")
                     execSQL("INSERT INTO telefones_tb (numero_telefones, tipo_telefones, contato_id) SELECT telefone_contatos, ?, id FROM contatos_tb",
                     arrayOf(TipoFone.RESIDENCIAL))
                     execSQL("DROP TABLE contatos_tb")

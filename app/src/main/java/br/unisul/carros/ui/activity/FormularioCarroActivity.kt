@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.    appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import br.unisul.carros.R
 import br.unisul.carros.dao.AppDatabase
 import br.unisul.carros.dao.CarroDAO
@@ -13,24 +13,24 @@ import br.unisul.carros.dao.TelefoneDAO
 import br.unisul.carros.model.Carro
 import br.unisul.carros.model.Telefone
 import br.unisul.carros.model.enuns.TipoFone
-import br.unisul.carros.ui.activity.validadores.Validador
-import br.unisul.carros.ui.activity.validadores.ValidadorEmail
-import br.unisul.carros.ui.activity.validadores.ValidadorObrigatorio
-import br.unisul.carros.ui.activity.validadores.ValidadorTelefone
+import br.unisul.carros.ui.activity.validadores.*
 import com.google.android.material.textfield.TextInputLayout
 
 var MENSAGEM_EMAIL_INVALIDO: String = ""
 
 class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
-    private val contato = Carro()
-    private var telefonesContato: MutableList<Telefone> = ArrayList();
-    private lateinit var campoNome: TextInputLayout
+
+    private val carro = Carro()
+    private var telefonesContato: MutableList<Telefone> = ArrayList()
+    private lateinit var marcaModelo: TextInputLayout
+    private lateinit var proprietario: TextInputLayout
+    private lateinit var placa: TextInputLayout
     private lateinit var campoTelefoneResidencial: TextInputLayout
     private lateinit var campoTelefoneCelular: TextInputLayout
     private lateinit var campoEmail: TextInputLayout
     private val validadoresLista: MutableList<Validador> = ArrayList()
     private val carroDAO: CarroDAO by lazy {
-        AppDatabase.getInstance(this).contadoDAO()
+        AppDatabase.getInstance(this).carroDAO()
     }
     private val telefoneDAO: TelefoneDAO by lazy {
         AppDatabase.getInstance(this).telefoneDAO()
@@ -38,7 +38,7 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_formulario_contato)
+        setContentView(R.layout.activity_formulario_carro)
         inicializacaoDosCampos()
         configurarEdicao()
     }
@@ -57,7 +57,9 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
     }
 
     private fun inicializacaoDosCampos() {
-        configurarCampoNome()
+        configurarCampoMarcaModelo()
+        configurarCampoProprietario()
+        configurarCampoPlaca()
         configurarCampoTelefoneResidencial()
         configurarCampoTelefoneCelular()
         configurarCampoEmail()
@@ -74,18 +76,29 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
                     validador.removerFormatacao()
                 }
             }
-
         }
     }
 
-    private fun configurarCampoNome() {
-        campoNome = findViewById(R.id.activity_formulario_contato_layout_nome)
-        val validador = ValidadorObrigatorio(campoNome)
+    private fun configurarCampoMarcaModelo() {
+        marcaModelo = findViewById(R.id.activity_formulario_carro_layout_marca_modelo)
+        val validador = ValidadorObrigatorio(marcaModelo)
         validadoresLista.add(validador)
-        validarExibicaoObrigatorio(campoNome, validador)
-
+        validarExibicaoObrigatorio(marcaModelo, validador)
     }
 
+    private fun configurarCampoProprietario() {
+        proprietario = findViewById(R.id.activity_formulario_carro_layout_proprietario)
+        val validador = ValidadorObrigatorio(proprietario)
+        validadoresLista.add(validador)
+        validarExibicaoObrigatorio(proprietario, validador)
+    }
+
+    private fun configurarCampoPlaca() {
+        placa = findViewById(R.id.activity_formulario_carro_layout_placa)
+        val validador = ValidadorPlaca(placa)
+        validadoresLista.add(validador)
+        validarExibicaoObrigatorio(placa, validador)
+    }
 
     private fun configurarCampoTelefoneResidencial() {
         campoTelefoneResidencial =
@@ -102,15 +115,12 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         validarExibicaoObrigatorio(campoTelefoneCelular, validador)
     }
 
-
     private fun configurarCampoEmail() {
         campoEmail = findViewById(R.id.activity_formulario_contato_layout_email)
         val validador = ValidadorEmail(campoEmail)
         validadoresLista.add(validador)
         validarExibicaoObrigatorio(campoEmail, validador)
-
     }
-
 
     private fun configurarEdicao() {
         val dados: Intent = intent
@@ -119,16 +129,15 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
             preencheDadosParaEditar(dados)
         } else {
             title = TITULO_FORMULARIO_CARROS
-
         }
     }
 
     private fun preencheDadosParaEditar(dados: Intent) {
         val contatoEdita = dados.getSerializableExtra(CHAVE_EXTRA_CONTATO) as Carro
         preencheCamposTela(contatoEdita)
-        this.contato.id = contatoEdita.id
-        this.contato.setCampos(contatoEdita.nome, contatoEdita.email)
-        telefonesContato = telefoneDAO.buscaTodosTelefones(this.contato.id)
+        this.carro.id = contatoEdita.id
+        this.carro.setCampos(contatoEdita.nome, contatoEdita.email, contatoEdita.proprietario, contatoEdita.placa)
+        telefonesContato = telefoneDAO.buscaTodosTelefones(this.carro.id)
         for (telefone in telefonesContato) {
             if (telefone.tipo == TipoFone.RESIDENCIAL) {
                 campoTelefoneResidencial.editText?.setText(telefone.numero)
@@ -139,8 +148,10 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
     }
 
     private fun preencheCamposTela(carroTela: Carro) {
-        campoNome.editText?.setText(carroTela.nome)
+        marcaModelo.editText?.setText(carroTela.nome)
         campoEmail.editText?.setText(carroTela.email)
+        proprietario.editText?.setText(carroTela.proprietario)
+        placa.editText?.setText(carroTela.placa)
     }
 
     private fun finalizarFormulario() {
@@ -152,9 +163,9 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
         }
         if (validaFormulario) {
             preencheContato()
-            if (contato.temIdValido()) {
-                carroDAO.edita(contato)
-                val (telefoneResidencial, telefoneCelular) = vinculaTelefones(contato.id)
+            if (carro.temIdValido()) {
+                carroDAO.edita(carro)
+                val (telefoneResidencial, telefoneCelular) = vinculaTelefones(carro.id)
                 telefoneDAO.atualiza(telefoneResidencial, telefoneCelular)
             } else {
                 salvarContato()
@@ -183,15 +194,17 @@ class FormularioContatoActivity : AppCompatActivity(), ConstantesActivity {
     }
 
     private fun salvarContato() {
-        val idContato = carroDAO.salva(this.contato)
+        val idContato = carroDAO.salva(this.carro)
         val (foneResidencial, foneCelular) = vinculaTelefones(idContato)
         telefoneDAO.salvar(foneResidencial, foneCelular)
     }
 
     private fun preencheContato() {
-        this.contato.setCampos(
-            campoNome.editText?.text.toString(),
-            campoEmail.editText?.text.toString()
+        this.carro.setCampos(
+            marcaModelo.editText?.text.toString(),
+            campoEmail.editText?.text.toString(),
+            proprietario.editText?.text.toString(),
+            placa.editText?.text.toString()
         )
     }
 

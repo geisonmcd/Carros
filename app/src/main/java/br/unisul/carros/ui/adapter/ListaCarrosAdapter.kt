@@ -30,7 +30,7 @@ class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewCriada: View =
-            LayoutInflater.from(context).inflate(R.layout.item_contato, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_carro, parent, false)
         val contatoIncluido = carroLista.get(position)
         atualizarDadosTextView(viewCriada, contatoIncluido)
         return viewCriada

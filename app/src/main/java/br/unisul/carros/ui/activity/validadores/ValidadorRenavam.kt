@@ -21,7 +21,7 @@ class ValidadorRenavam(private val textInputLayout: TextInputLayout) : Validador
             val padraoFormatadoRegex = "^([0-9]{10})([0-9]{1})$".toRegex()
             val padraoMascara = "$1-$2"
             if (!editText?.text.toString().matches(padraoFormatadoRegex)) {
-                textInputLayout.error = MENSAGEM_EMAIL_INVALIDO
+                textInputLayout.error = "O RENAVAM não bate com o padrão"
                 textInputLayout.isErrorEnabled = true
                 return true;
             }
@@ -30,7 +30,7 @@ class ValidadorRenavam(private val textInputLayout: TextInputLayout) : Validador
             textInputLayout.error = null
             textInputLayout.isErrorEnabled = false
         } else {
-            textInputLayout.error = "Não é uma placa válida"
+            textInputLayout.error = "Não é um RENAVAM válidO"
             textInputLayout.isErrorEnabled = true
             return true
         }

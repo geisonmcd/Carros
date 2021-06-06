@@ -21,7 +21,7 @@ class ValidadorPlaca(private val textInputLayout: TextInputLayout) : Validador {
             val padraoFormatadoRegex = "^([a-zA-Z]{3})([0-9]{4})$".toRegex()
             val padraoMascara = "$1-$2"
             if (!editText?.text.toString().matches(padraoFormatadoRegex)) {
-                textInputLayout.error = MENSAGEM_EMAIL_INVALIDO
+                textInputLayout.error = "A placa não bate com o padrão XXX-YYYY"
                 textInputLayout.isErrorEnabled = true
                 return true;
             }

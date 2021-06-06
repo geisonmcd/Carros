@@ -35,7 +35,6 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
     override fun onResume() {
         super.onResume()
         adapter.atualizarDados(dao.todos())
-
     }
 
     override fun onCreateContextMenu(
@@ -63,8 +62,7 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     val menuInfo: AdapterView.AdapterContextMenuInfo =
                         item.menuInfo as AdapterView.AdapterContextMenuInfo
-                    var carroEscolhido: Carro = adapter.getItem(menuInfo.position)
-                    //Ponto de Exclamação duplo força um NullPointerException
+                    val carroEscolhido: Carro = adapter.getItem(menuInfo.position)
                     dao.remover(carroEscolhido)
                     adapter.remove(carroEscolhido)
                 }
@@ -105,11 +103,22 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         botaoShare.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT,"Hey Check out this Great app:")
+
+            intent.putExtra(Intent.EXTRA_TEXT, getTextThatWillBeShared())
             intent.type = "text/plain"
-            startActivity(Intent.createChooser(intent,"Share To:"))
+            startActivity(Intent.createChooser(intent, "Compartilhe com:"))
         }
     }
+
+    private fun getTextThatWillBeShared(): String {
+        val carros: List<Carro> = dao.todos()
+        var text = "MARCA/MODELO PLACA PROPRIETARIO\n"
+        for (carro in carros) {
+            text += carro.toString()
+        }
+        return text
+    }
+
 }
 
 

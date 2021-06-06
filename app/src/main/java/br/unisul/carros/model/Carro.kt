@@ -39,7 +39,7 @@ class Carro() : Serializable {
     }
 
     override fun toString(): String {
-        return nome
+        return "$nome $placa $proprietario\n"
     }
 
     fun setCampos(nome: String, email: String, proprietario: String, placa: String,  renavam: String) {

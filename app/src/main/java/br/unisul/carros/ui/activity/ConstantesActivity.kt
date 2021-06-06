@@ -16,8 +16,8 @@ interface ConstantesActivity {
         get() = "Lista de Carros"
     val TITULO_FORMULARIO_CARROS: String
         get() = "Cadastro de Carros"
-    val TITULO_EDITA_FORMULARIO_CONTATOS: String
+    val TITULO_EDITA_FORMULARIO_CARROS: String
         get() = "Editar Carro"
-    val CHAVE_EXTRA_CONTATO: String
-    get() = "contato"
+    val CHAVE_EXTRA_CARRO: String
+    get() = "carro"
 }

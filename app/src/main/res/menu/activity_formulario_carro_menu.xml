@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/activity_formulario_contato_menu_salvar_botao"
+    <item android:id="@+id/activity_formulario_carro_menu_salvar_botao"
         app:showAsAction="always"
         android:title="Salvar"
-        android:icon="@drawable/ic_drawable_activity_formulario_contatos_salvar"/>
+        android:icon="@drawable/ic_drawable_activity_formulario_carro_salvar"/>
 </menu>

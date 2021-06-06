@@ -11,16 +11,16 @@ import br.unisul.carros.model.enuns.TipoFone
     foreignKeys = [
         ForeignKey(entity = Carro::class,
         parentColumns = arrayOf("id"),
-        childColumns = arrayOf("contato_id"),
+        childColumns = arrayOf("carro_id"),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE)])
 class Telefone {
 
-    constructor(numeroFone: String, tipo: TipoFone, idContato: Long) : this() {
+    constructor(numeroFone: String, tipo: TipoFone, idCarro: Long) : this() {
 
         this.numero = numeroFone
         this.tipo = tipo
-        this.contatoId = idContato
+        this.carroId = idCarro
     }
     constructor(){
 
@@ -35,7 +35,7 @@ class Telefone {
     @ColumnInfo(name = "tipo_telefones")
     lateinit var tipo: TipoFone
 
-    @ColumnInfo(name = "contato_id")
-    var contatoId: Long=0
+    @ColumnInfo(name = "carro_id")
+    var carroId: Long=0
 
 }

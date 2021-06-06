@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.FormularioContatoActivity" />
+        <activity android:name=".ui.activity.FormularioCarroActivity" />
     </application>
 
 </manifest>

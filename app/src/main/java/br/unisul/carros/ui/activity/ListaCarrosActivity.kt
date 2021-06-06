@@ -19,7 +19,7 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
     private val dao: CarroDAO by lazy {
         AppDatabase.getInstance(this).carroDAO()
     }
-    private val listaContatoView: ListView by lazy { findViewById(R.id.activity_lista_contatos) }
+    private val listaCarroView: ListView by lazy { findViewById(R.id.activity_lista_carros) }
     private val adapter: ListaCarrosAdapter by lazy {
         ListaCarrosAdapter(this)
     }
@@ -28,7 +28,7 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_carros)
         title = TITULO_CARROS
-        configuraNovoContatoButtonOnClickListener()
+        configuraNovoCarroButtonOnClickListener()
         configuraLista()
     }
 
@@ -43,12 +43,12 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        menuInflater.inflate(R.menu.activity_lista_contatos_menu_remover, menu)
+        menuInflater.inflate(R.menu.activity_lista_carros_menu_remover, menu)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId
-        if (itemId == R.id.activity_lista_contatos_menu_remover_botao) {
+        if (itemId == R.id.activity_lista_carros_menu_remover_botao) {
             confirmarExclusao(item)
         }
         return super.onContextItemSelected(item)
@@ -75,25 +75,25 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         configuraAdapter()
         configuraItemOnClickListener()
         configuraShareButtonOnClickListener()
-        registerForContextMenu(listaContatoView)
+        registerForContextMenu(listaCarroView)
     }
 
     private fun configuraAdapter() {
-        listaContatoView.adapter = adapter
+        listaCarroView.adapter = adapter
     }
 
-    private fun configuraNovoContatoButtonOnClickListener() {
-        val botaoNovoContato = findViewById<FloatingActionButton>(R.id.activity_fab_novo_contato)
-        botaoNovoContato.setOnClickListener {
-            startActivity(Intent(this@ListaCarrosActivity, FormularioContatoActivity::class.java))
+    private fun configuraNovoCarroButtonOnClickListener() {
+        val botaoNovoCarro = findViewById<FloatingActionButton>(R.id.activity_fab_novo_carro)
+        botaoNovoCarro.setOnClickListener {
+            startActivity(Intent(this@ListaCarrosActivity, FormularioCarroActivity::class.java))
         }
     }
 
     private fun configuraItemOnClickListener() {
-        listaContatoView.setOnItemClickListener { parent, view, position, id ->
+        listaCarroView.setOnItemClickListener { parent, view, position, id ->
             val carroEscolhido: Carro = parent.getItemAtPosition(position) as Carro
-            val formularioAlteracao = Intent(this, FormularioContatoActivity::class.java)
-            formularioAlteracao.putExtra(CHAVE_EXTRA_CONTATO, carroEscolhido)
+            val formularioAlteracao = Intent(this, FormularioCarroActivity::class.java)
+            formularioAlteracao.putExtra(CHAVE_EXTRA_CARRO, carroEscolhido)
             startActivity(formularioAlteracao)
         }
     }

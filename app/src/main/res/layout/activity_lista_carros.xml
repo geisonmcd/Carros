@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/activity_fab_novo_contato"
+            android:id="@+id/activity_fab_novo_carro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -22,7 +22,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_drawable_activity_lista_contatos_adicionar" />
+            app:srcCompat="@drawable/ic_drawable_activity_lista_carros_adicionar" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/activity_fab_share"
@@ -38,7 +38,7 @@
             app:srcCompat="@drawable/ic_drawable_activity_formulario_share" />
 
         <ListView
-            android:id="@+id/activity_lista_contatos"
+            android:id="@+id/activity_lista_carros"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

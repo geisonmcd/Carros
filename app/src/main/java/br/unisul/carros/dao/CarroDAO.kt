@@ -9,7 +9,7 @@ interface CarroDAO {
     @Insert
     fun salva(carro: Carro): Long
 
-    @Query("SELECT * FROM contatos_tb")
+    @Query("SELECT * FROM carro")
     fun todos(): List<Carro>
 
     @Update

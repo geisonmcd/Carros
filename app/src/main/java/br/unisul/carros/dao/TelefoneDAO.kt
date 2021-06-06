@@ -9,11 +9,11 @@ import br.unisul.carros.model.Telefone
 @Dao
 interface TelefoneDAO {
 
-    @Query("SELECT * FROM telefones_tb where contato_id= :contatoId LIMIT 1")
-    fun buscaPrimeiroTelefoneDoContato(contatoId:Long): Telefone
+    @Query("SELECT * FROM telefones_tb where carro_id= :carroId LIMIT 1")
+    fun buscaPrimeiroTelefoneDoCarro(carroId:Long): Telefone
 
-    @Query("SELECT * FROM telefones_tb where contato_id= :contatoId")
-    fun buscaTodosTelefones(contatoId: Long): MutableList<Telefone>
+    @Query("SELECT * FROM telefones_tb where carro_id= :carroId")
+    fun buscaTodosTelefones(carroId: Long): MutableList<Telefone>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun atualiza(vararg telefones: Telefone)

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import br.unisul.carros.dao.conversores.ConverteTipoFone
-import br.unisul.carros.dao.enuns.MigrationsContato
+import br.unisul.carros.dao.enuns.MigrationsCarro
 import br.unisul.carros.model.Carro
 import br.unisul.carros.model.Telefone
 
@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
             val database = Room.databaseBuilder(
                 context,
                 AppDatabase::class.java, "carrosDB"
-            ).allowMainThreadQueries().addMigrations(MigrationsContato.MIGRATION_1_2.build()).build()
+            ).allowMainThreadQueries().addMigrations(MigrationsCarro.MIGRATION_1_2.build()).build()
             return database
         }
     }

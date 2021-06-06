@@ -30,18 +30,18 @@ class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewCriada: View = LayoutInflater.from(context).inflate(R.layout.item_carro, parent, false)
-        val contatoIncluido = carros.get(position)
-        atualizarDadosTextView(viewCriada, contatoIncluido)
+        val carroIncluido = carros.get(position)
+        atualizarDadosTextView(viewCriada, carroIncluido)
         return viewCriada
 
     }
 
     private fun atualizarDadosTextView(viewCriada: View, carroIncluido: Carro) {
-        val nome: TextView = viewCriada.findViewById(R.id.item_contato_nome)
+        val nome: TextView = viewCriada.findViewById(R.id.item_carro_marca_modelo)
         nome.text = carroIncluido.nome
-        val telefone: TextView = viewCriada.findViewById(R.id.item_contato_telefone)
+        val telefone: TextView = viewCriada.findViewById(R.id.item_carro_telefone)
         val telefoneDAO = AppDatabase.getInstance(context).telefoneDAO()
-        val primeiroFone: Telefone? = telefoneDAO.buscaPrimeiroTelefoneDoContato(carroIncluido.id)
+        val primeiroFone: Telefone? = telefoneDAO.buscaPrimeiroTelefoneDoCarro(carroIncluido.id)
         if (primeiroFone != null) {
             telefone.text = primeiroFone.numero
         }

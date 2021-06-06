@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "contatos_tb")
+@Entity(tableName = "carro")
 class Carro() : Serializable {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
-    @ColumnInfo(name = "nome_contatos")
+    @ColumnInfo(name = "marca_modelo")
     var nome: String = ""
 
     @ColumnInfo(name = "proprietario")
@@ -23,7 +23,7 @@ class Carro() : Serializable {
     @ColumnInfo(name = "renavam")
     var renavam: String = ""
 
-    @ColumnInfo(name = "email_contatos")
+    @ColumnInfo(name = "email")
     lateinit var email: String
 
     constructor(nome: String,  email: String, proprietario: String, placa: String, renavam: String) : this() {

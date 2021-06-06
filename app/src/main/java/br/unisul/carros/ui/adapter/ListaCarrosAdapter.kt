@@ -13,25 +13,24 @@ import br.unisul.carros.model.Telefone
 
 
 class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
-    private val carroLista: MutableList<Carro> = ArrayList()
 
+    private val carros: MutableList<Carro> = ArrayList()
 
     override fun getCount(): Int {
-        return carroLista.size
+        return carros.size
     }
 
     override fun getItem(position: Int): Carro {
-        return carroLista.get(position)
+        return carros.get(position)
     }
 
     override fun getItemId(position: Int): Long {
-        return carroLista.get(position).id
+        return carros.get(position).id
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val viewCriada: View =
-            LayoutInflater.from(context).inflate(R.layout.item_carro, parent, false)
-        val contatoIncluido = carroLista.get(position)
+        val viewCriada: View = LayoutInflater.from(context).inflate(R.layout.item_carro, parent, false)
+        val contatoIncluido = carros.get(position)
         atualizarDadosTextView(viewCriada, contatoIncluido)
         return viewCriada
 
@@ -48,18 +47,15 @@ class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
         }
     }
 
-
     fun atualizarDados(carros: List<Carro>) {
-        this.carroLista.clear()
-        this.carroLista.addAll(carros)
+        this.carros.clear()
+        this.carros.addAll(carros)
         notifyDataSetChanged()
-
     }
 
     fun remove(carro: Carro) {
-        this.carroLista.remove(carro)
+        this.carros.remove(carro)
         notifyDataSetChanged()
     }
-
 
 }

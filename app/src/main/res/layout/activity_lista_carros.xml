@@ -24,6 +24,19 @@
             android:clickable="true"
             app:srcCompat="@drawable/ic_drawable_activity_lista_contatos_adicionar" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/activity_fab_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_drawable_activity_formulario_share" />
+
         <ListView
             android:id="@+id/activity_lista_contatos"
             android:layout_width="match_parent"

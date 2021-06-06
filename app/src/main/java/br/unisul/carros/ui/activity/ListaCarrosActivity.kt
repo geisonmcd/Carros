@@ -28,9 +28,8 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_carros)
         title = TITULO_CARROS
-        configurarFabNovoContato()
+        configuraNovoContatoButtonOnClickListener()
         configuraLista()
-
     }
 
     override fun onResume() {
@@ -52,7 +51,6 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
         val itemId = item.itemId
         if (itemId == R.id.activity_lista_contatos_menu_remover_botao) {
             confirmarExclusao(item)
-
         }
         return super.onContextItemSelected(item)
     }
@@ -70,38 +68,46 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
                     dao.remover(carroEscolhido)
                     adapter.remove(carroEscolhido)
                 }
-
             })
             .setNegativeButton(NOME_BOTAO_NAO, null)
             .show()
-
-
     }
 
     private fun configuraLista() {
-        configurarAdapter()
-        configurarListinerDeCliqueNoItem()
+        configuraAdapter()
+        configuraItemOnClickListener()
+        configuraShareButtonOnClickListener()
         registerForContextMenu(listaContatoView)
     }
 
-    private fun configurarFabNovoContato() {
+    private fun configuraAdapter() {
+        listaContatoView.adapter = adapter
+    }
+
+    private fun configuraNovoContatoButtonOnClickListener() {
         val botaoNovoContato = findViewById<FloatingActionButton>(R.id.activity_fab_novo_contato)
         botaoNovoContato.setOnClickListener {
             startActivity(Intent(this@ListaCarrosActivity, FormularioContatoActivity::class.java))
         }
     }
 
-    private fun configurarAdapter() {
-        listaContatoView.adapter = adapter
-    }
-
-    private fun configurarListinerDeCliqueNoItem() {
-
+    private fun configuraItemOnClickListener() {
         listaContatoView.setOnItemClickListener { parent, view, position, id ->
             val carroEscolhido: Carro = parent.getItemAtPosition(position) as Carro
             val formularioAlteracao = Intent(this, FormularioContatoActivity::class.java)
             formularioAlteracao.putExtra(CHAVE_EXTRA_CONTATO, carroEscolhido)
             startActivity(formularioAlteracao)
+        }
+    }
+
+    private fun configuraShareButtonOnClickListener() {
+        val botaoShare = findViewById<FloatingActionButton>(R.id.activity_fab_share)
+        botaoShare.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT,"Hey Check out this Great app:")
+            intent.type = "text/plain"
+            startActivity(Intent.createChooser(intent,"Share To:"))
         }
     }
 }

@@ -35,8 +35,8 @@ class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
     }
 
     private fun atualizarDadosTextView(viewCriada: View, carroIncluido: Carro) {
-        val nome: TextView = viewCriada.findViewById(R.id.item_carro_marca_modelo)
-        nome.text = carroIncluido.nome
+        val marcaModeloProprietario: TextView = viewCriada.findViewById(R.id.item_carro_marca_modelo)
+        marcaModeloProprietario.text = carroIncluido.marcaModelo + " - " + carroIncluido.proprietario
         val telefone: TextView = viewCriada.findViewById(R.id.item_carro_telefone)
         telefone.text = carroIncluido.telefone
     }

@@ -128,11 +128,11 @@ class FormularioCarroActivity : AppCompatActivity(), ConstantesActivity {
         val carroEdita = dados.getSerializableExtra(CHAVE_EXTRA_CARRO) as Carro
         preencheCamposTela(carroEdita)
         this.carro.id = carroEdita.id
-        this.carro.setCampos(carroEdita.nome, carroEdita.email, carroEdita.proprietario, carroEdita.placa, carroEdita.renavam, carroEdita.telefone)
+        this.carro.setCampos(carroEdita.marcaModelo, carroEdita.email, carroEdita.proprietario, carroEdita.placa, carroEdita.renavam, carroEdita.telefone)
     }
 
     private fun preencheCamposTela(carroTela: Carro) {
-        marcaModelo.editText?.setText(carroTela.nome)
+        marcaModelo.editText?.setText(carroTela.marcaModelo)
         campoEmail.editText?.setText(carroTela.email)
         proprietario.editText?.setText(carroTela.proprietario)
         placa.editText?.setText(carroTela.placa)

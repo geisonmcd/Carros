@@ -12,7 +12,7 @@ class Carro() : Serializable {
     var id: Long = 0
 
     @ColumnInfo(name = "marca_modelo")
-    var nome: String = ""
+    var marcaModelo: String = ""
 
     @ColumnInfo(name = "proprietario")
     var proprietario: String = ""
@@ -30,7 +30,7 @@ class Carro() : Serializable {
     lateinit var email: String
 
     constructor(nome: String, email: String, proprietario: String, placa: String, renavam: String, telefone: String) : this() {
-        this.nome = nome
+        this.marcaModelo = nome
         this.email = email
         this.proprietario = proprietario
         this.placa = placa
@@ -43,11 +43,11 @@ class Carro() : Serializable {
     }
 
     override fun toString(): String {
-        return "$nome $placa $proprietario\n"
+        return "$marcaModelo $placa $proprietario\n"
     }
 
     fun setCampos(nome: String, email: String, proprietario: String, placa: String,  renavam: String, telefone: String) {
-        this.nome = nome
+        this.marcaModelo = nome
         this.email = email
         this.proprietario = proprietario
         this.placa = placa

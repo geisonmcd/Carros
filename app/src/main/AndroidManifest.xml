@@ -20,6 +20,7 @@
         </activity>
 
         <activity android:name=".ui.activity.FormularioCarroActivity" />
+        <activity android:name=".ui.activity.ShareActivity" />
     </application>
 
 </manifest>

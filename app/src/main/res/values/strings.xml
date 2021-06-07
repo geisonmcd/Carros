@@ -3,4 +3,8 @@
     <string name="va_string_marca_modelo">Marca / Modelo</string>
     <string name="va_string_proprietario">Proprietario</string>
     <string name="MENSAGEM_EMAIL_INVALIDO">Formato de e-mail inválido</string>
+    <string-array name="campos_array">
+        <item>Marca / Modelo</item>
+        <item>Proprietario</item>
+    </string-array>
 </resources>

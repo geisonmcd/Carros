@@ -101,12 +101,14 @@ class ListaCarrosActivity : AppCompatActivity(), ConstantesActivity {
     private fun configuraShareButtonOnClickListener() {
         val botaoShare = findViewById<FloatingActionButton>(R.id.activity_fab_share)
         botaoShare.setOnClickListener {
-            val intent = Intent()
-            intent.action = Intent.ACTION_SEND
-
-            intent.putExtra(Intent.EXTRA_TEXT, getTextThatWillBeShared())
-            intent.type = "text/plain"
-            startActivity(Intent.createChooser(intent, "Compartilhe com:"))
+            val shareActivity = Intent(this, ShareActivity::class.java)
+//            formularioAlteracao.putExtra(CHAVE_EXTRA_CARRO, carroEscolhido)
+            startActivity(shareActivity)
+//          val intent = Intent()
+//          intent.action = Intent.ACTION_SEND
+//          intent.putExtra(Intent.EXTRA_TEXT, getTextThatWillBeShared())
+//          intent.type = "text/plain"
+//          startActivity(Intent.createChooser(intent, "Compartilhe com:"))
         }
     }
 

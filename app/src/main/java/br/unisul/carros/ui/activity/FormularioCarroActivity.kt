@@ -160,7 +160,6 @@ class FormularioCarroActivity : AppCompatActivity(), ConstantesActivity {
     }
 
     private fun salvarCarro() {
-        println(this.carro)
         carroDAO.salva(this.carro)
     }
 

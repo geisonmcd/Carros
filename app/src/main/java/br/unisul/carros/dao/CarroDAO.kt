@@ -12,6 +12,12 @@ interface CarroDAO {
     @Query("SELECT * FROM carro order by marca_modelo, proprietario")
     fun todos(): List<Carro>
 
+    @Query("SELECT * FROM carro where UPPER(marca_modelo) like '%' || UPPER(:query) || '%'")
+    fun buscaCarroByMarcaModelo(query: String): List<Carro>
+
+    @Query("SELECT * FROM carro where UPPER(proprietario) like '%' || UPPER(:query) || '%'")
+    fun buscaCarroByProprietario(query: String): List<Carro>
+
     @Update
     fun edita(carro: Carro)
 

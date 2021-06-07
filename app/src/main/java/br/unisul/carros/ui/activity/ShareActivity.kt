@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import br.unisul.carros.R
 import br.unisul.carros.dao.AppDatabase
@@ -19,6 +20,7 @@ class ShareActivity : AppCompatActivity(), ConstantesActivity, AdapterView.OnIte
 
     private lateinit var queryString: TextInputLayout
     private lateinit var campo: String
+    private lateinit var text: TextView
     private var spinnerPosition: Int = 0
     private val carroDAO: CarroDAO by lazy {
         AppDatabase.getInstance(this).carroDAO()
@@ -30,6 +32,7 @@ class ShareActivity : AppCompatActivity(), ConstantesActivity, AdapterView.OnIte
         inicializacaoDosCampos()
         title = "Compartilhar Carros"
         configuraSpinner()
+        text = findViewById(R.id.textView)
     }
 
     private fun configuraSpinner() {
@@ -69,13 +72,15 @@ class ShareActivity : AppCompatActivity(), ConstantesActivity, AdapterView.OnIte
             0 -> carros = carroDAO.buscaCarroByMarcaModelo(query)
             1 -> carros = carroDAO.buscaCarroByProprietario(query)
         }
-        openShareFunction(carros)
+        var sharedText: String = getTextThatWillBeShared(carros)
+        this.text.setText(sharedText)
+        openShareFunction(sharedText)
     }
 
-    private fun openShareFunction(carros: List<Carro>) {
+    private fun openShareFunction(text: String) {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
-        intent.putExtra(Intent.EXTRA_TEXT, getTextThatWillBeShared(carros))
+        intent.putExtra(Intent.EXTRA_TEXT, text)
         intent.type = "text/plain"
         startActivity(Intent.createChooser(intent, "Compartilhe com:"))
     }

@@ -101,7 +101,7 @@ class FormularioCarroActivity : AppCompatActivity(), ConstantesActivity {
     }
 
     private fun configurarCampoTelefone() {
-        telefone = findViewById(R.id.activity_formulario_carro_layout_fone_residencial)
+        telefone = findViewById(R.id.activity_formulario_carro_layout_fone)
         val validador = ValidadorTelefone(telefone)
         validadoresLista.add(validador)
         validarExibicaoObrigatorio(telefone, validador)

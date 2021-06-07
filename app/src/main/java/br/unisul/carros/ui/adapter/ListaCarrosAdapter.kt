@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import br.unisul.carros.R
-import br.unisul.carros.dao.AppDatabase
 import br.unisul.carros.model.Carro
-import br.unisul.carros.model.Telefone
 
 
 class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
@@ -40,11 +38,7 @@ class ListaCarrosAdapter(private val context: Context) : BaseAdapter() {
         val nome: TextView = viewCriada.findViewById(R.id.item_carro_marca_modelo)
         nome.text = carroIncluido.nome
         val telefone: TextView = viewCriada.findViewById(R.id.item_carro_telefone)
-        val telefoneDAO = AppDatabase.getInstance(context).telefoneDAO()
-        val primeiroFone: Telefone? = telefoneDAO.buscaPrimeiroTelefoneDoCarro(carroIncluido.id)
-        if (primeiroFone != null) {
-            telefone.text = primeiroFone.numero
-        }
+        telefone.text = carroIncluido.telefone
     }
 
     fun atualizarDados(carros: List<Carro>) {

@@ -81,29 +81,12 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_renavam">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_formulario_carro_fone_residencial"
+            android:id="@+id/activity_formulario_carro_telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/white"
-            android:hint="Informe o seu Fone Residencial"
-            android:inputType="phone"
-            tools:layout_editor_absoluteX="0dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activity_formulario_carro_layout_celular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_fone_residencial">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_formulario_carro_celular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:hint="Informe o seu Celular"
+            android:hint="Informe o seu Telefone"
             android:inputType="phone"
             tools:layout_editor_absoluteX="0dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +95,7 @@
         android:id="@+id/activity_formulario_carro_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_celular">
+        app:layout_constraintTop_toBottomOf="@+id/activity_formulario_carro_layout_fone_residencial">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_formulario_carro_email"
